@@ -1,0 +1,56 @@
+<h3>Notes:</h3>
+
+<ul class="notes-list">
+  {{#if notes}}
+    {{#each notes as note}}
+      <li>
+        <a href="#!{{note.id}}" on:click="fire('select', { note })">{{note.title}}</a>
+      </li>
+    {{/each}}
+  {{else}}
+    No notes have been created yet
+  {{/if}}
+</ul>
+
+<button type="button" class="new-note" name="new-note" on:click="fire('new')">New</button>
+
+<script>
+  /*
+    Note Construct
+    {
+      id {Int}
+      title {String}
+      body {String}
+    }
+  */
+  export default {
+    data () {
+      /**
+       * The notes will be provided when the component is initialized
+       * @see /src/main.js
+       */
+      return {};
+    }
+  };
+</script>
+
+<style>
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+
+  .notes-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .notes-list > li > a {
+    display: block;
+    margin: 0;
+    padding: 0.3em 0.5em;
+    border-bottom: 1px solid #888;
+    text-decoration: none;
+  }
+</style>

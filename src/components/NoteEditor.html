@@ -1,0 +1,94 @@
+{{#if note}}
+  <p>
+    <button type="button" name="save-note" class="save-note" on:click="save()">Save</button>
+    <button type="button" name="cancel-note" class="cancel-note" on:click="cancel()">Cancel</button>
+  </p>
+
+  <p>
+    <input type="text" name="note-title" class="note-title" bind:value="note.title">
+  </p>
+
+  <textarea ref:editor name="note-editor" class="note-editor">{{note.body}}</textarea>
+
+{{else}}
+  No note has been selected yet.
+{{/if}}
+
+<script>
+  export default {
+    onrender() {
+      this.noteObserver = this.observe( 'note', (newNote, oldNote) => {
+        if(newNote && oldNote) {
+          if(newNote.body !== oldNote.body) {
+            this.refs.editor.value = newNote.body;
+          }
+        }
+      });
+    },
+
+    onteardown() {
+      // clean up the observer
+      this.noteObserver.cancel();
+    },
+
+    data () {
+      /**
+       * The note will be provided
+       */
+      return {
+        note: undefined
+      };
+    },
+
+    methods: {
+      cancel() {
+        this.set({
+          note: undefined
+        });
+      },
+
+      save() {
+        const note = {
+          id: this.get('note').id,
+          title: this.get('note').title,
+          body: this.refs.editor.value
+        };
+
+        this.fire('saved', { note: note });
+      }
+    }
+  }
+</script>
+
+<style>
+
+  input.note-title {
+    font-size: 1.5em;
+    width: 100%;
+    display: block;
+    background: white;
+    border: 1px solid #888;
+    border-radius: 5px;
+    padding: .3em;
+  }
+
+  textarea.note-editor {
+    width: 100%;
+    height: 50em;
+    background: white;
+    border: 1px solid #888;
+    border-radius: 5px;
+    padding: .3em;
+  }
+
+  button.save-note {
+    width: 50%;
+    float: left;
+  }
+
+  button.cancel-note {
+    width: 50%;
+    float: left;
+  }
+
+</style>
