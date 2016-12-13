@@ -3,7 +3,7 @@ const LAST_ID = 'last_id';
 let storage = {};
 
 /**
- * Retrives all of the current notes saved in local storage
+ * Retrieves all of the current notes saved in local storage
  * @type public
  * @return {Array} notes all of the saved notes
  */
@@ -12,7 +12,7 @@ storage.getNotes = function() {
 };
 
 /**
- * Retrives a specific note
+ * Retrieves a specific note
  * @type public
  * @param  {Int} id   The ID of the note you want
  * @return {Object}   the found note or undefined
@@ -69,7 +69,7 @@ storage.saveNote = function( note ) {
 };
 
 /**
- * Retrives a new ID
+ * Retrieves a new ID
  * @return {Number} ID
  */
 storage.getNewId = function() {
