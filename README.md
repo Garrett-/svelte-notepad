@@ -7,7 +7,9 @@ Be forwarned that this application is more functional than decrotave, meaning it
 
 ## Future
 
-Some additions I plan to add.
+**Update 2017-1-3**
+
+I have built a whole new application that has markdown support. This new application can be [seen here](https://github.com/Garrett-/svelte-markdown-editor).
 
 1. Markdown support
 2. Better styling
